@@ -185,7 +185,7 @@ class AdminController extends Controller
             $to = $this->container->getParameter('mailer_host');
             $sujet = 'Mot de passe';
             $headers='From: Service des Bougainvilliers <'.$this->container->getParameter('mailer_host_service').'>'. "\r\n";
-            $message = 'identifiant: admin | mot de passe: papillondesiles';
+            $message = 'identifiant:  | mot de passe: ';
             mail($to, $sujet, $message, $headers);
             return $this->redirect($this->generateUrl('ddb_admin_homepage'));
     }
