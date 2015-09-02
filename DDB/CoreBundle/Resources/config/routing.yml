@@ -1,0 +1,23 @@
+ddb_core_homepage:
+    path:     /
+    defaults: { _controller: DDBCoreBundle:Core:index }
+
+ddb_core_photos:
+    path:     /photos
+    defaults: { _controller: DDBCoreBundle:Core:photos }
+    
+ddb_core_livredor:
+    path:     /livredor
+    defaults: { _controller: DDBCoreBundle:Core:livredor }
+
+ddb_core_geographie:
+    path:     /geographie
+    defaults: { _controller: DDBCoreBundle:Core:geographie }
+    
+ddb_core_contact:
+    path:     /contact
+    defaults: { _controller: DDBCoreBundle:Core:contact }
+    
+cadmin:
+    path:     /cadmin
+    defaults: { _controller: DDBCoreBundle:Core:cadmin }

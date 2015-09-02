@@ -1,0 +1,19 @@
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Géographie - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div class="well" style="text-align: justify">
+        {{(plan.texte|raw)|nl2br}}
+    </div>
+    <hr>
+    <div style="text-align: center">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.0674021165!2d-61.72614315643039!3d16.35010000237752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDIxJzAwLjUiTiA2McKwNDMnMzQuMCJX!5e0!3m2!1sfr!2sfr!4v1439308429794"
+        frameborder=""
+        style="width: 60%;
+        height: 450px; "
+        >
+    </iframe>
+    </div>
+{%endblock%}

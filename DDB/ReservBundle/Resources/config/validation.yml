@@ -1,0 +1,50 @@
+DDB\ReservBundle\Entity\Reservation:
+    properties:
+        adresse:
+            - Length:
+                min: 2
+                max: 255
+                minMessage: "Champ adresse invalide. {{ limit }} caractères mininum"
+                maxMessage: "Champ adresse invalide. {{ limit }} caractères maximum"
+        cp:
+            - Regex: 
+                pattern: "|^\d{2,}$|"
+                message: "Code postal non valide"
+        nom:
+            - Length:
+                min: 2
+                max: 255
+                minMessage: "Champ nom invalide. {{ limit }} caractères mininum"
+                maxMessage: "Champ nom invalide. {{ limit }} caractères maximum"
+            - Regex:
+                pattern: "/\d/"
+                match:   false
+                message: "Votre nom ne peut pas contenir de nombre"
+        prenom:
+            - Length:
+                min: 2
+                max: 255
+                minMessage: "Champ prénom invalide. {{ limit }} caractères mininum"
+                maxMessage: "Champ prénom invalide. {{ limit }} caractères maximum"
+            - Regex:
+                pattern: "/\d/"
+                match:   false
+                message: "Votre prénom ne peut pas contenir de nombre"
+        email:
+            - Regex: 
+                pattern: "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#"
+                message: "Adresse e-mail non valide"
+        telephone:
+            - Regex:
+                pattern: "`^0[1-68][0-9]{8}$`"
+                message: "Numero de téléphone non valide"
+        ville:
+            - Length:
+                min: 1
+                max: 255
+                minMessage: "Champ ville invalide. {{ limit }} caractères mininum"
+                maxMessage: "Champ ville invalide. {{ limit }} caractères maximum"
+            - Regex:
+                pattern: "/\d/"
+                match:   false
+                message: "Le champ ville ne peut pas contenir de nombre"

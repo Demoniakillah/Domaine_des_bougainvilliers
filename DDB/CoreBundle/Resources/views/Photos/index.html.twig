@@ -1,0 +1,31 @@
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Photos - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div>
+        {% for photo in album %}
+            <div>
+            <div style="display: inline-block;vertical-align: top;">
+                <img src="{{ asset(photo.uploadDir~'/'~photo.url) }}" 
+                     style="
+                     max-width: 600px;
+                     box-shadow: 5px 5px 5px 0px #cbcefb;
+                     border: solid 1px #08C;
+                     border-radius: 10px;
+                     ">
+            </div>
+                     <div class="well" 
+                style="
+                 display: inline-block;
+                 word-break: break-all;
+                 margin-left: 15px;
+                 ">
+                <i>
+                {{photo.description}}
+                </i>
+            </div>
+        </div>
+            {%endfor%}
+    </div>
+{%endblock%}

@@ -1,0 +1,33 @@
+ddb_reserv_homepage:
+    path:     /
+    defaults: { _controller: DDBReservBundle:Reserv:index }
+    
+ddb_reserv_details:
+    path:     /details/{id}
+    defaults: {_controller: DDBReservBundle:Reserv:details }
+    requirements:
+        id: \d+
+    
+ddb_reserv:
+    path:     /reserv/{id}
+    defaults:  {_controller: DDBReservBundle:Reserv:reserv }
+    requirements:
+        id: \d+
+        
+ddb_calendrier:
+    path:     /calendier/{id}
+    defaults:  {_controller: DDBReservBundle:Reserv:calendrier }
+    requirements:
+        id: \d+
+        
+ddb_reserv_ok:
+    path:    /ok
+    defaults:  {_controller: DDBReservBundle:Reserv:ok }
+    
+ddb_reserv_cancel:
+    path:    /cancel
+    defaults:  {_controller: DDBReservBundle:Reserv:cancel }
+    
+ddb_reserv_confirm:
+    path:    /confirm
+    defaults:  {_controller: DDBReservBundle:Reserv:confirm }

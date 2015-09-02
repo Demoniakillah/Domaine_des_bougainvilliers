@@ -1,0 +1,26 @@
+{# empty Twig template #}
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Calendrier - {{ parent() }}
+{% endblock %}
+{% block body %}
+    
+    {% if listeReservations is not empty %}
+        <div class="well" style="display: inline-block">
+            <font style="color: red">Bungalow non disponible pour les dates suivante:</font>
+    <ul>
+        {% for reservation in listeReservations %}
+            <li>du <b>{{reservation.debut|date('d/m/Y')}}</b> au <b>{{reservation.fin|date('d/m/Y')}}</b></li>
+            {% endfor %}
+    </ul>
+        </div>
+            {% else %}
+            <div  class="well" style="display: inline-block;color: green">Disponible dès maintenant</div>
+                {% endif %}
+                <br>
+    <a class="btn btn-default" href="{{path('ddb_reserv_details',{'id':id})}}">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Retour</a>
+    <a class="btn btn-success" href="{{path('ddb_reserv',{'id':id})}}">Réserver</a>
+    
+{% endblock %}

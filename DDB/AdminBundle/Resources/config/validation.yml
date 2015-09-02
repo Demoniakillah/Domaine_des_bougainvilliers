@@ -1,0 +1,14 @@
+DDB\AdminBundle\Entity\Bungalow:
+    properties:
+        
+DDB\AdminBundle\Entity\Album:
+    properties:
+        
+DDB\AdminBundle\Entity\Photo:
+    properties:
+        
+DDB\AdminBundle\Entity\Accueil:
+    properties:
+        texte:
+            - NotBlank:
+                message: "Impossible de laisser cette zone vide !"

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+  <title>Au Domaine des Bougainvilliers</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+    <h3 style="text-shadow: 2px 2px 2px #9EA4FE;">Domaine des Bougainvilliers</h3>
+    <div class="well">
+        Bonjour Philipe,<br>
+        <br>
+Vous avez une nouvelle éservation pour le bungalow n°{{reservation.bungalow}}.
+Cliquez sur le lien pour voir l'historique : 
+<a href="http://www.audomainedesbougainvilliers.com{{ path('ddb_admin_reservations') }}">
+    http://www.audomainedesbougainvilliers.com
+</a>.
+    <br>
+    <br>
+    Connectez-vous ensuite à votre compte Paypal en cliquant 
+    <a href="https://www.paypal.com">ICI</a>
+    pour afficher les autres informations relatives au paiement.
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{# src\DDB\AdminBundle\Resources\views\Admin\login.html.twig #}
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Authentification - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    
+    
+ 
+    <form action="{{ path("login_check") }}" method="post" class="well">
+ 
+  
+  <p>
+      <label>Administrateur:</label>
+	<input class="text-input" type="text" name="_username" value="{{ last_username }}" />
+   </p>
+   <p>
+      <label>Mot de passe</label>
+      <input class="text-input" type="password" name="_password" />
+   </p>
+   {% if error %}
+	<div class="notification error png_bg">
+		<div>
+                    Erreur dans l'identifiant ou le mot de passe<br>
+                    Si vous ne vous rappelez plus de vos identfiants cliquez
+                    <a href="{{path('password_forgoten')}}"> ICI </a>
+		</div>
+	</div>
+  {% endif %}
+   <p id="remember-password">
+      <input type="checkbox" />Se souvenir de moi
+   </p>
+ 
+   <p>
+	<input class="btn btn-primary" type="submit" name="login" value="Connexion" />
+   </p>
+</form>
+   
+      {% endblock %}

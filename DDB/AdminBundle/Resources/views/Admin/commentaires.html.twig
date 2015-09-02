@@ -1,0 +1,16 @@
+{% extends "DDBAdminBundle:Admin:admin.html.twig" %}
+
+{% block view_body %}
+    <h3><i><u>gestion des commentaires</u></i></h3>
+    <div>
+        {% for commentaire in commentaires %}
+            <div class="well" style="display: inline-block;text-align: center">
+            <i>{{commentaire.pseudo}} :</i><br>
+            <p>{{commentaire.commentaire}}</p>
+            <p>Note: {{commentaire.note}}/5</p>
+            <q style="font-size: 10px;">Posté le {{commentaire.date|date('d/m/Y')}}</q><br>
+            <a href="{{path('ddb_admin_delete_commentaire',{'id':commentaire.id})}}" class="btn btn-danger">Supprimer <i class="glyphicon glyphicon-trash"></i></a>
+        </div>
+            {%endfor%}
+    </div>
+    {%endblock%}

@@ -1,0 +1,71 @@
+ddb_admin_homepage:
+    path:     /admin
+    defaults: { _controller: DDBAdminBundle:Admin:admin }
+    
+bungalow_view:
+    path:     /admin/view/{id}
+    defaults: { _controller: DDBAdminBundle:Admin:view }
+    requirements:
+        id: \d+
+
+login:
+    pattern: /login
+    defaults: { _controller: DDBAdminBundle:Admin:login }
+    
+login_check:
+    pattern: /login_check
+    
+logout:
+    pattern: /logout
+    
+ddb_delete_photo:
+    path:    /delete/photo/{id_photo}
+    defaults: {_controller: DDBAdminBundle:Admin:deletePhoto }
+    requirements:
+        id_photo: \d+
+        
+ddb_admin_reservations:
+    path:    /admin/reserv/{type}/{val}
+    defaults: {_controller: DDBAdminBundle:Admin:reservations, type: limit, val: 5 }
+    
+ddb_admin_accueil:
+    path:    /admin/accueil
+    defaults: {_controller: DDBAdminBundle:Admin:accueil }
+    
+ddb_admin_reserv_traiter:
+    path:    /admin/traiter/{reservation_id}/{action}
+    defaults: {_controller: DDBAdminBundle:Admin:traiter }
+    requirements:
+        reservation_id: \d+
+        
+ddb_admin_album:
+    path:     /admin/album
+    defaults: {_controller: DDBAdminBundle:Admin:album }
+    
+ddb_admin_delete_album:
+    path:    /admin/album/delete/{id}
+    defaults: {_controller: DDBAdminBundle:Admin:deleteAlbum }
+    requirements:
+        id: \d+
+        
+ddb_admin_commentaires:
+    path:    /admin/commentaires
+    defaults: {_controller: DDBAdminBundle:Admin:commentaires }
+    
+ddb_admin_delete_commentaire:
+    path:    /admin/delete/commentaires/{id}
+    defaults: {_controller: DDBAdminBundle:Admin:deleteCommentaire }
+    requirements:
+        id: \d+
+        
+ddb_admin_help:
+    path:    /admin/help
+    defaults: {_controller: DDBAdminBundle:Admin:help }
+    
+ddb_admin_plan:
+    path:    /admin/plan
+    defaults: {_controller: DDBAdminBundle:Admin:plan }
+ 
+ddb_admin_contact:
+    path:    /admin/contact
+    defaults: {_controller: DDBAdminBundle:Admin:contact }

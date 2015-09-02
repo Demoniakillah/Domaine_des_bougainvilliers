@@ -1,0 +1,58 @@
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Livre d'Or - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div style="text-align: center">
+        <strong style="text-shadow: 2px 2px 2px #9EA4FE;">Laisser un commentaire</strong>
+    </div>
+    <div class="well commentaire_accueil" style="text-align: center;">
+      {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
+      {{ form_errors(form) }}
+      <div class="form-group">
+      {{ form_label(form.pseudo) }} 
+      {{ form_errors(form.pseudo) }}
+      {{ form_widget(form.pseudo,{'attr':{'size':'10'}}) }}
+      </div>
+      <div class="form-group">
+      {{ form_label(form.commentaire) }} 
+      {{ form_errors(form.commentaire) }}<br>
+      {{ form_widget(form.commentaire,{'attr':{'cols':'30'}}) }}
+      </div>
+      <div class="form-group">
+          {{ form_label(form.note) }}: 
+          {% for child in form.note %}
+              {% if loop.index==3 %}
+                  {{ form_widget(child,{'attr':{'checked':'checked'}}) }}
+              {% else %}
+                {{ form_widget(child) }}   
+              {%endif %}
+          {% endfor %}
+      </div>
+  {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+  {{ form_end(form) }}
+  </div>
+  
+    
+    <div>
+        {% for commentaire in livredor %}
+            <div class="well commentaire_accueil" style="opacity: 0.9">
+                      <div class="">
+                          {% for i in 1..commentaire.note %} 
+                          <i style="color: gold; text-shadow: 2px 2px 2px #0034a6;" class="glyphicon glyphicon-star"> </i> 
+                          {% endfor %}
+                          {% for i in (0..5-commentaire.note) %}
+                              {% if not loop.index0 == 0 %}
+                          <i style="color: darkgray; text-shadow: 2px 2px 2px #0034a6;" class="glyphicon glyphicon-star"> </i> 
+                          {% endif %}
+                          {% endfor %}
+                      </div>
+                          <div style="font-size: 14px; font-weight: bold;">{{commentaire.pseudo}}: 
+                      
+                      </div>
+                      <p style="text-align: justify;font-size:12px; ">{{commentaire.commentaire }}</p>
+                      <q style="font-size: 10px;">Posté le {{commentaire.date|date('d/m/Y')}}</q>
+              </div>
+            {%endfor%}
+    </div>
+{%endblock%}

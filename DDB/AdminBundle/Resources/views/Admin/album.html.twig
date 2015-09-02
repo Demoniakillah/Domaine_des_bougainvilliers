@@ -1,0 +1,30 @@
+{% extends "DDBAdminBundle:Admin:admin.html.twig" %}
+
+{% block view_body %}
+    <h3><i><u>Mon album photo</u></i></h3>
+     <div class="well" style="display: inline-block;vertical-align:top;">
+  <form method="post" {{ form_enctype(form) }}>
+     {{ form_label ( form .file , " Ajouter une photo ") }}
+     {{ form_errors ( form . file ) }}
+     {{ form_widget ( form . file ) }}
+     <br>
+     {{ form_label ( form .description) }}
+     <br>
+     {{ form_errors ( form . description ) }}
+     {{ form_widget ( form . description ,{'attr':{'cols':'40','rows':'5'}}) }}
+     <br>
+     {{ form_widget(form.ok, {'attr': {'class': 'btn btn-primary'}})}}
+     {{ form_rest(form) }}
+ </form>
+</div> 
+    <div class="well">
+        
+        {%for photo in album%}
+            <div style="vertical-align: top;text-align: center;display: inline-block">
+                <p><img style="border-radius: 10px;" src="{{ asset(photo.uploadDir~'/'~photo.url) }}" width="150"></p>
+                <p style="max-width: 200px;word-break: break-all">{{photo.description}}<p>
+                <a href="{{path('ddb_admin_delete_album',{'id':photo.id})}}"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
+            </div>
+            {%endfor%}
+    </div>
+{% endblock %}

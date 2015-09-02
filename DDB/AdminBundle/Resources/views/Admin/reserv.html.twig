@@ -1,0 +1,55 @@
+{% extends "DDBAdminBundle:Admin:admin.html.twig" %}
+
+{% block view_body %}
+    <h3><i><u>Historique des réservations ({{historique|length}})</u></i></h3>
+    <a href="{{path('ddb_admin_reservations',{'type':'limit','val':'5'})}}">
+        Les 5 dernières</a> | 
+    <a href="{{path('ddb_admin_reservations',{'type':'limit','val':'10'})}}">
+        Les 10 dernières</a> | 
+    <a href="{{path('ddb_admin_reservations',{'type':'month','val':'1'})}}">
+        Ce mois-ci</a> | 
+    <a href="{{path('ddb_admin_reservations',{'type':'month','val':'3'})}}">
+        Les 3 derniers mois</a> | 
+    <a href="{{path('ddb_admin_reservations',{'type':'month','val':'6'})}}">
+        Les 6 derniers mois</a> | 
+    <a href="{{path('ddb_admin_reservations',{'type':'limit','val':'null'})}}">
+        Tout afficher</a><br>
+    <div class="well" >
+        {% for reservation in historique %}
+            <p class="well" 
+               style="
+                    background-color:
+                    {% if loop.index is divisibleby(2) %}
+                        #dfdfdf 
+                    {%endif%}
+                    ;
+               "
+               >
+                <i>{{loop.index}}</i>_ 
+                Réservation sur le <b>Bungalow n°{{reservation.bungalow}}</b> 
+                effectuée le <b>{{reservation.date|date('d/m/Y')}}</b> <br>
+                Par {{reservation.civilite}}
+                {{reservation.nom}}
+                {{reservation.prenom}}<br>
+                Période: du 
+                <b>
+                {{reservation.debut|date('d/m/Y')}}
+                </b>
+                au 
+                <b>
+                {{reservation.fin|date('d/m/Y')}}
+                </b>
+                <br>
+                Montant total: <b>{{reservation.montant}} €</b>
+                <br>
+                {%if reservation.validee == true %}
+                    Numéro de transaction: <b>{{reservation.transactionId}}</b>
+                    {%else%}
+                        Transaction annulée par l'utilisateur <br>
+                        <a href="{{path ('ddb_admin_reserv_traiter',{'reservation_id':reservation.id,'action':'delete'})}}">Supprimer</a>
+                        <br>Note: Cette action n'implique pas de remboursement    
+                    {%endif%}
+                </p>
+            {% endfor %}
+    </div>
+    {% endblock %}

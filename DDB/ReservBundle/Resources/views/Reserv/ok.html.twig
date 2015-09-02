@@ -1,0 +1,14 @@
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Paiement accepté - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <p class="well">
+        Nous vous remercions de votre paiement. 
+        Votre transaction est terminée et vous allez recevoir par email un avis accusant réception 
+        de votre achat. 
+        Vous pouvez vous connecter à votre compte sur 
+        <a href="{{ paypal }}">Paypal</a> 
+        pour consulter les détails de cette transaction
+    </p>
+{% endblock %}

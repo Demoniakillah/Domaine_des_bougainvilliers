@@ -1,0 +1,10 @@
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Erreur - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <p class="well">
+        Vous avez dépassé la limite d'essais de paiement autorisée.<br>
+        Tentez de faire une nouvelle réservation
+    </p>
+{% endblock %}

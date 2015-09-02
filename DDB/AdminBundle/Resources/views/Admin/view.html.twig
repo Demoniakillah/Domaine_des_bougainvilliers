@@ -1,0 +1,23 @@
+{# src\DDB\AdminBundle\Resources\views\Admin\view.html.twig #}
+
+{% extends "DDBAdminBundle:Admin:admin.html.twig" %}
+
+{% block view_body %}
+    <h2>{{ bungalow.nom }}</h2>   
+    <div class="row">
+    {% for photo in listePhotos %}
+        <div class="col-md-2 col-sm-4 col-xs-2 center-text" style="text-align:center;">
+            <img src="{{ asset(photo.uploadDir~'/'~photo.url) }}" alt="{{ asset(photo.url) }}" width="120"/><br>
+        <q>{{ photo.description[:50] }} ...</q>
+        <br>
+        <a href="{{ path('ddb_delete_photo', {'id_photo': photo.id}) }}" class="btn btn-danger">
+        <i class="glyphicon glyphicon-trash"></i>
+        </a>
+        </div>
+        {% endfor %}
+    {% if listePhotos is not defined %}
+        <q class="alert-danger"><u><i>Pas de photos pour {{ bungalow.nom }} ???</i></u></q>
+    {% endif %}
+</div>
+    {{ include ("DDBAdminBundle:Admin:form.html.twig") }}
+    {% endblock %}

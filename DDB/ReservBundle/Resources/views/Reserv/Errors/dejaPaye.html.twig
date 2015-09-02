@@ -1,0 +1,11 @@
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Erreur - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <p class="well">
+        Vous avez déja effectué le paiement pour cette transaction.<br>
+        Aucun nouveau prélèvement n'a été effectué.<br>
+        Merci de votre compréhension
+    </p>
+{% endblock %}

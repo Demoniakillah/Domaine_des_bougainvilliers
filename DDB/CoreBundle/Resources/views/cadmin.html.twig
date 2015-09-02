@@ -1,0 +1,51 @@
+     
+      <div id="html">
+          
+          <p style="font-size: 14px;"><a href="mailto:losio@audomainedesbougainvilliers.com">Philipe LOSIO</a> 
+            - Domaine des Bougainvilliers -  {{ 'now'|date('Y') }} -
+            <a href="http://www.audomainedesbougainvilliers.com">
+                http://www.audomainedesbougainvilliers.com
+            </a>  
+        <br>
+        <font style="font-size: 12px;"><i>Un probleme sur le site ? Envoyez un message en cliquant  
+            <a data-toggle="modal" data-backdrop="false" href="#formulaire" class=""> ici </a>
+            </i></font>
+        </p>
+          
+          
+        
+      </div>
+      <div class="modal fade" id="formulaire">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">x</button>
+              <h4 class="modal-title">Formulaire de contact :</h4>
+            </div>
+            <div class="modal-body">
+              {{ form(form) }}
+              <note>* champs obligatoires</note>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-info" data-dismiss="modal">Annuler</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script>
+      $(function(){
+        $("form").submit(function(e) {
+          e.preventDefault();
+          var $form = $(this);
+          $.post($form.attr("action"), $form.serialize())
+          .done(function(data) {
+            $("#html").html(data);
+            $("#formulaire").modal("hide"); 
+          })
+          .fail(function() {
+            alert("ça marche pas...");
+          });
+        });
+      });
+    </script>

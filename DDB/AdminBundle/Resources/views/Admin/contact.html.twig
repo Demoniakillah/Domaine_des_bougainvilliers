@@ -1,0 +1,18 @@
+{% extends "DDBAdminBundle:Admin:admin.html.twig" %}
+{% block view_body %}
+    <h3><i><u>Texte de la zone contact</u></i></h3>
+    
+    <div class="well" style="display: inline-block;vertical-align:top;">
+      <form method="post" {{ form_enctype(form) }}>
+          <div style="text-align: center" class="form-group">
+          {{ form_label(form.texte) }}
+          <br>
+          {{ form_errors(form.texte) }}
+          {{ form_widget(form.texte,{'attr':{'cols':'90','rows':'20'}}) }}
+          <br>
+          {{ form_widget(form.ok, {'attr': {'class': 'btn btn-primary'}}) }}
+        </div>
+            {{ form_rest(form) }}
+     </form>
+    </div> 
+{% endblock %}

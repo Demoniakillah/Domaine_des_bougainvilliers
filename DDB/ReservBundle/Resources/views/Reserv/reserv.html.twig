@@ -1,0 +1,182 @@
+{# empty Twig template #}
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Réservation - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <h2>Espace réservation</h2>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <div  class="col-md-4">
+        <div class="well">
+            <h4><i><u>Dates de réservation:</u></i></h4>
+            {{form_label(form.debut)}}
+            <font style="color:red">{{form_errors(form.debut)}}</font>
+            {{form_widget(form.debut,{'attr':{'onChange':'calcul_prix()'}})}}
+            {{form_label(form.fin)}}
+            <font style="color:red">{{form_errors(form.fin)}}</font>
+            {{form_widget(form.fin,{'attr':{'onChange':'calcul_prix()'}})}}
+            <br>
+            <div id="nb_jours" style="text-align: center"></div>
+             <em style="color:red;font-size: 10px;">
+                </em>
+        </div>
+            {% if listeReservations is not empty %}
+        <div class="well">
+            <p style="color: red">Attention<br>
+                Ce bungalow n'est pas disponible pour ces dates:</p>
+            <ul>
+                {% for reservation in listeReservations %}
+                    <li><h5>du {{reservation.debut|date('d/m/Y')}} au {{reservation.fin|date('d/m/Y')}}</h5></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    <div class="well col-md-4">
+        <h4><i><u>Informations personnelles:</u></i></h4>
+        <br>
+        <table>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.civilite)}}
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.civilite)}}</font>
+                    {{form_widget(form.civilite)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.prenom)}}
+                    
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.prenom)}}</font>
+                    {{form_widget(form.prenom)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.nom)}}
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.nom)}}</font>
+                    {{form_widget(form.nom)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.email)}}
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.email)}}</font>
+                    {{form_widget(form.email)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.telephone)}}
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.telephone)}}</font>
+                    {{form_widget(form.telephone)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.adresse)}}
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.adresse)}}</font>
+                    {{form_widget(form.adresse)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.cp)}}
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.cp)}}</font>
+                    {{form_widget(form.cp)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;padding-right: 15px;">
+                    {{form_label(form.ville)}}
+                </td>
+                <td>
+                    <font style="color:red">{{form_errors(form.ville)}}</font>
+                    {{form_widget(form.ville)}}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;padding-top: 15px" colspan="2">
+                    <input type="checkbox" required="true"> 
+                    J’ai lu et j'accepte les <br>
+                    <a href="{{path('cgv')}}" onclick="window.open(this.href); return false;">
+                        conditions générales de vente
+                    </a>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;padding-top: 15px" colspan="2">
+                {{form_widget(form.ok,{'attr':{'class':'btn btn-primary'}})}}
+                </td>
+            </tr>
+        </table>
+    </div>
+                <div class="well col-md-3 col-md-offset-1">
+        <h4><i><u>Informations sur le bungalow "{{bungalow.nom}}":</u></i></h4>
+        <p>Tarif: {{bungalow.tarif}}€ la nuit</p><input type="hidden" id="tarif" value="{{bungalow.tarif}}"/>
+        {{bungalow.texte}}
+    </div>
+    {{form_rest(form)}}
+    {{form_end(form)}}
+    
+    {%endblock%}
+    
+    {% block javascripts %}
+        
+        <script>
+            window.onload = calcul_prix();
+            
+            function dateDiff(date1, date2){
+                var tmp = date2 - date1; 
+                tmp = Math.floor(tmp/1000/3600/24);
+                return tmp;
+            }
+            
+            function calcul_prix(){
+                var nb_jour = dateDiff(
+                        new Date(
+                            document.getElementById('ddb_reservbundle_reservation_debut_year').value,
+                            document.getElementById('ddb_reservbundle_reservation_debut_month').value-1,
+                            document.getElementById('ddb_reservbundle_reservation_debut_day').value)
+                        ,
+                        new Date(
+                            document.getElementById('ddb_reservbundle_reservation_fin_year').value,
+                            document.getElementById('ddb_reservbundle_reservation_fin_month').value-1,
+                            document.getElementById('ddb_reservbundle_reservation_fin_day').value))
+                                ;
+                tarif = document.getElementById('tarif').value * nb_jour;
+                if(nb_jour<=0){
+                    document.getElementById('nb_jours').innerHTML = "Attention: Période non valide !!!";
+                    document.getElementById('nb_jours').style.color = "red";
+                }
+                else{
+                    if(nb_jour===1){
+                        document.getElementById('nb_jours').innerHTML = nb_jour+" jour = "+tarif+"€";
+                    }
+                    else{
+                        document.getElementById('nb_jours').innerHTML = nb_jour+" jours = "+tarif+"€";
+                    }
+                    document.getElementById('nb_jours').style.color = "black";
+                }
+            }
+            
+            
+        </script>
+        
+    {% endblock %}

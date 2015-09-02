@@ -1,0 +1,50 @@
+{# src\DDB\AdminBundle\Resources\views\Admin\form.html.twig #}
+
+<div class="row">
+<div class="well col-md-8">
+  {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
+  <error>{{ form_errors(form) }}</error>
+      <div class="col-lg-6">
+  <div class="form-group">
+      {{ form_label(form.tarif) }} 
+      <error>{{ form_errors(form.tarif) }}</error>
+      {{ form_widget(form.tarif,{'attr':{'size':'1'}}) }} €/nuit
+  </div>
+  <div class="form-group">
+      {{ form_label(form.nom) }} 
+      <error>{{ form_errors(form.nom) }}</error><br>
+      {{ form_widget(form.nom) }}
+  </div>
+  <div class="form-group">
+      {{ form_label(form.resume) }} 
+      <error>{{ form_errors(form.resume) }}</error><br>
+      {{ form_widget(form.resume,{'attr':{'cols':'1','rows':'','class':'montxtarea'}}) }}
+  </div>
+  </div>
+  <div class="form-group col-lg-6">
+      {{ form_label(form.texte) }} 
+      <error>{{ form_errors(form.texte) }}</error><br>
+      {{ form_widget(form.texte,{'attr':{'cols':'','rows':'','class':'montxtarea xl'}}) }}
+  </div>
+  <div class="col-lg-12" >
+  {{ form_widget(form.valider, {'attr': {'class': 'btn btn-primary'}}) }}
+      {{ form_end(form) }}
+  </div>
+  
+</div>
+ <div class="well col-md-4">
+  <form method="post" {{ form_enctype(form_photo) }}>
+     {{ form_label ( form_photo .file , " Ajouter une photo ") }}
+     <error>{{ form_errors ( form_photo . file ) }}</error>
+     {{ form_widget ( form_photo . file ) }}
+     <br>
+     {{ form_label ( form_photo .description) }}
+     <br>
+     <error>{{ form_errors ( form_photo . description ) }}</error>
+     {{ form_widget ( form_photo . description ,{'attr':{'cols':'','rows':'','class':'montxtarea'}}) }}
+     <br>
+     {{ form_widget(form_photo.Ajouter, {'attr': {'class': 'btn btn-primary'}})}}
+     {{ form_rest(form_photo) }}
+ </form>
+</div> 
+</div>

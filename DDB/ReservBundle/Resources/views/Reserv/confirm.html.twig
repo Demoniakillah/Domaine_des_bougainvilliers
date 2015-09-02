@@ -1,0 +1,18 @@
+{% extends "DDBCoreBundle::layout.html.twig" %}
+{% block title %}
+  Confirmation de paiement - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div class='well' style="text-align: center">
+    <p>
+        Je confirme la réservation du <b>{{reservation.debut|date('d/m/Y')}}</b> 
+        au <b>{{reservation.fin|date('d/m/Y')}}</b>
+        pour un montant de <b>{{reservation.montant}} €</b>.</p>
+    <p>
+        Cliquez sur le bouton ci-dessous pour effectuer un <b>paiement sécurisé</b>
+        par <b>carte bancaire</b> ou avec votre <b>compte Paypal</b>.</p>
+    <a href="{{path('ddb_reserv_confirm')}}">
+        <img src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_paynowCC_LG.gif" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+    </a>
+    </div>
+{% endblock %}
